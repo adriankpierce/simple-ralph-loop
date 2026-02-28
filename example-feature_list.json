@@ -1,0 +1,3034 @@
+[
+  {
+    "category": "functional",
+    "description": "User can navigate to /login and see email/password login form",
+    "steps": [
+      "Step 1: Navigate to /login",
+      "Step 2: Verify email input field is present",
+      "Step 3: Verify password input field is present",
+      "Step 4: Verify submit/login button is present"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can navigate to /signup and see registration form",
+    "steps": [
+      "Step 1: Navigate to /signup",
+      "Step 2: Verify email input field is present",
+      "Step 3: Verify password input field is present",
+      "Step 4: Verify sign up button is present"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can sign up with email and password via Supabase Auth",
+    "steps": [
+      "Step 1: Navigate to /signup",
+      "Step 2: Enter valid email address",
+      "Step 3: Enter valid password (min 6 chars)",
+      "Step 4: Click sign up button",
+      "Step 5: Verify account creation succeeds or confirmation email sent"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "User can log in with valid credentials",
+    "steps": [
+      "Step 1: Navigate to /login",
+      "Step 2: Enter registered email",
+      "Step 3: Enter correct password",
+      "Step 4: Click login button",
+      "Step 5: Verify redirect to /projects page"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Login fails with invalid credentials and shows error",
+    "steps": [
+      "Step 1: Navigate to /login",
+      "Step 2: Enter registered email",
+      "Step 3: Enter incorrect password",
+      "Step 4: Click login button",
+      "Step 5: Verify error message is displayed",
+      "Step 6: Verify user remains on /login page"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Unauthenticated user is redirected to /login when accessing /projects",
+    "steps": [
+      "Step 1: Clear all auth cookies/session",
+      "Step 2: Navigate to /projects",
+      "Step 3: Verify redirect to /login page"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Unauthenticated user is redirected to /login when accessing /projects/[id] editor",
+    "steps": [
+      "Step 1: Clear all auth cookies/session",
+      "Step 2: Navigate to /projects/some-uuid",
+      "Step 3: Verify redirect to /login page"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can log out and session is cleared",
+    "steps": [
+      "Step 1: Log in with valid credentials",
+      "Step 2: Click user menu or logout button",
+      "Step 3: Verify redirect to /login page",
+      "Step 4: Attempt to navigate to /projects",
+      "Step 5: Verify redirect back to /login"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Signup form validates email format",
+    "steps": [
+      "Step 1: Navigate to /signup",
+      "Step 2: Enter invalid email (e.g. 'notanemail')",
+      "Step 3: Submit form",
+      "Step 4: Verify validation error is shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Login page has link to signup and vice versa",
+    "steps": [
+      "Step 1: Navigate to /login",
+      "Step 2: Verify link to /signup exists",
+      "Step 3: Click link to /signup",
+      "Step 4: Verify navigation to /signup",
+      "Step 5: Verify link back to /login exists"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can create a new project with name",
+    "steps": [
+      "Step 1: Log in and navigate to /projects",
+      "Step 2: Click '+ New Project' button",
+      "Step 3: Enter project name 'Test Project'",
+      "Step 4: Confirm creation",
+      "Step 5: Verify project appears in the project list"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Project list page shows all user projects sorted by last modified",
+    "steps": [
+      "Step 1: Log in with user who has multiple projects",
+      "Step 2: Navigate to /projects",
+      "Step 3: Verify all projects are displayed as cards",
+      "Step 4: Verify projects are sorted by last modified (most recent first)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Project card shows thumbnail, name, and last modified date",
+    "steps": [
+      "Step 1: Navigate to /projects with at least one project",
+      "Step 2: Verify each project card shows project name",
+      "Step 3: Verify each card shows last modified date",
+      "Step 4: Verify each card shows a thumbnail of first slide"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Clicking a project card opens the editor",
+    "steps": [
+      "Step 1: Navigate to /projects",
+      "Step 2: Click on a project card",
+      "Step 3: Verify navigation to /projects/[id] editor page",
+      "Step 4: Verify editor UI loads with the project data"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can rename a project from the project list context menu",
+    "steps": [
+      "Step 1: Navigate to /projects",
+      "Step 2: Click three-dot context menu on a project card",
+      "Step 3: Click 'Rename' option",
+      "Step 4: Enter new name 'Renamed Project'",
+      "Step 5: Confirm",
+      "Step 6: Verify project card now shows 'Renamed Project'"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can duplicate a project (deep copy)",
+    "steps": [
+      "Step 1: Navigate to /projects with a project that has slides and images",
+      "Step 2: Click three-dot context menu on the project",
+      "Step 3: Click 'Duplicate' option",
+      "Step 4: Verify a new project appears in the list",
+      "Step 5: Open the duplicate project",
+      "Step 6: Verify it has the same slides and images as the original"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can delete (archive) a project",
+    "steps": [
+      "Step 1: Navigate to /projects",
+      "Step 2: Click three-dot context menu on a project",
+      "Step 3: Click 'Delete' option",
+      "Step 4: Confirm deletion in dialog",
+      "Step 5: Verify project is removed from the list"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can rename project inline from the editor top bar",
+    "steps": [
+      "Step 1: Open a project in the editor",
+      "Step 2: Click on the project name in the top bar",
+      "Step 3: Edit the name",
+      "Step 4: Press Enter or click away",
+      "Step 5: Verify name is updated",
+      "Step 6: Navigate back to /projects and verify new name shows"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can toggle project shareable link on/off in settings",
+    "steps": [
+      "Step 1: Open project editor",
+      "Step 2: Open settings drawer",
+      "Step 3: Find public link toggle (default off)",
+      "Step 4: Toggle it on",
+      "Step 5: Verify shareable URL is displayed",
+      "Step 6: Toggle it off",
+      "Step 7: Verify link is no longer active"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Each project has a unique shareable view-only link at /view/[project-id]",
+    "steps": [
+      "Step 1: Create a project and toggle public link on",
+      "Step 2: Copy the shareable URL",
+      "Step 3: Open the URL in an incognito/unauthenticated browser",
+      "Step 4: Verify the view page loads with present mode experience",
+      "Step 5: Verify no editor UI is shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Private project view link returns 404 or access denied",
+    "steps": [
+      "Step 1: Create a project with is_public = false (default)",
+      "Step 2: Navigate to /view/[project-id] without auth",
+      "Step 3: Verify access is denied or 404 page shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Projects are scoped to authenticated user (RLS)",
+    "steps": [
+      "Step 1: Create a project with User A",
+      "Step 2: Log out, log in as User B",
+      "Step 3: Navigate to /projects",
+      "Step 4: Verify User A's project is not visible",
+      "Step 5: Attempt to access User A's project URL directly",
+      "Step 6: Verify access is denied"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Editor page shows filmstrip sidebar, main canvas, and top bar",
+    "steps": [
+      "Step 1: Create and open a project",
+      "Step 2: Verify filmstrip sidebar is on the left (~200px wide)",
+      "Step 3: Verify main canvas occupies center area",
+      "Step 4: Verify top bar is present with project name, zoom, undo/redo, settings, present, export buttons",
+      "Step 5: Verify back to projects link exists"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Editor top bar has zoom controls (fit to screen, percentage slider)",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify zoom controls are present",
+      "Step 3: Click 'fit to screen' button",
+      "Step 4: Verify slide fits within the canvas area",
+      "Step 5: Adjust zoom slider",
+      "Step 6: Verify slide scales accordingly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Editor top bar has undo/redo buttons",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify undo button is present (disabled when no history)",
+      "Step 3: Verify redo button is present (disabled when no redo available)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Settings drawer opens from gear icon in top bar",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click gear/settings icon in top bar",
+      "Step 3: Verify settings drawer slides in from the right",
+      "Step 4: Verify it contains font selectors, gap slider, border radius slider, aspect ratio picker, public link toggle"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Image tray is visible and collapsible at bottom of editor",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify image tray panel is at the bottom (~120px tall)",
+      "Step 3: Click collapse toggle",
+      "Step 4: Verify tray collapses",
+      "Step 5: Click toggle again",
+      "Step 6: Verify tray expands"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "New project starts with one blank title slide",
+    "steps": [
+      "Step 1: Create a new project",
+      "Step 2: Open it in the editor",
+      "Step 3: Verify filmstrip shows exactly one slide",
+      "Step 4: Verify the slide is a title slide type"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can add a new photo slide",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click '+ Add Slide' button at bottom of filmstrip",
+      "Step 3: Select 'Photo slide' from dropdown",
+      "Step 4: Verify new slide appears in filmstrip",
+      "Step 5: Verify it is selected and shown on canvas"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can add a title slide",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click '+ Add Slide' button",
+      "Step 3: Select 'Title slide' from dropdown",
+      "Step 4: Verify new title slide is added",
+      "Step 5: Verify it renders with hero image area and text overlay"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can add a text-only slide",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click '+ Add Slide' button",
+      "Step 3: Select 'Text-only slide' from dropdown",
+      "Step 4: Verify new text-only slide appears with heading and body fields"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can delete a slide",
+    "steps": [
+      "Step 1: Open editor with multiple slides",
+      "Step 2: Select a slide in filmstrip",
+      "Step 3: Delete the slide (via context menu or keyboard)",
+      "Step 4: Verify slide is removed from filmstrip",
+      "Step 5: Verify another slide is auto-selected"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can duplicate a slide",
+    "steps": [
+      "Step 1: Open editor with a slide containing images and text",
+      "Step 2: Select the slide",
+      "Step 3: Click duplicate option",
+      "Step 4: Verify new slide appears after the original",
+      "Step 5: Verify duplicate has same images and text"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can reorder slides via drag-and-drop in filmstrip",
+    "steps": [
+      "Step 1: Open editor with 3+ slides",
+      "Step 2: Drag slide 3 above slide 1 in filmstrip",
+      "Step 3: Drop it",
+      "Step 4: Verify slide order has updated",
+      "Step 5: Verify sort_order values are correct in the data"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Clicking a slide thumbnail in filmstrip selects it and shows it on canvas",
+    "steps": [
+      "Step 1: Open editor with multiple slides",
+      "Step 2: Click on slide 2 thumbnail",
+      "Step 3: Verify slide 2 is highlighted in filmstrip",
+      "Step 4: Verify main canvas renders slide 2"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Slide aspect ratio can be set per project (16:9 default)",
+    "steps": [
+      "Step 1: Create a new project",
+      "Step 2: Open editor",
+      "Step 3: Verify slide renders in 16:9 aspect ratio",
+      "Step 4: Open settings drawer",
+      "Step 5: Change aspect ratio to 1:1",
+      "Step 6: Verify slide canvas updates to square ratio"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "All preset aspect ratios work (16:9, 4:3, 3:4, 9:16, 1:1)",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Select 16:9, verify canvas ratio",
+      "Step 3: Select 4:3, verify canvas ratio",
+      "Step 4: Select 3:4, verify canvas ratio",
+      "Step 5: Select 9:16, verify canvas ratio",
+      "Step 6: Select 1:1, verify canvas ratio"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Custom aspect ratio input works",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Select 'Custom' aspect ratio",
+      "Step 3: Enter '5:4'",
+      "Step 4: Verify slide canvas updates to 5:4 ratio"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can navigate between slides with Up/Down arrow keys",
+    "steps": [
+      "Step 1: Open editor with 3+ slides",
+      "Step 2: Select first slide",
+      "Step 3: Press Down arrow",
+      "Step 4: Verify second slide is now selected",
+      "Step 5: Press Down arrow again",
+      "Step 6: Verify third slide is selected",
+      "Step 7: Press Up arrow",
+      "Step 8: Verify second slide is selected again"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can paste image from clipboard onto current slide (Cmd+V)",
+    "steps": [
+      "Step 1: Open editor with a photo slide selected",
+      "Step 2: Copy an image to clipboard from another source",
+      "Step 3: Press Cmd/Ctrl+V in the editor",
+      "Step 4: Verify image is uploaded to Supabase Storage",
+      "Step 5: Verify image appears on the current slide",
+      "Step 6: Verify image appears in the image tray"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can drag image files from desktop onto slide canvas",
+    "steps": [
+      "Step 1: Open editor with a photo slide selected",
+      "Step 2: Drag an image file from the desktop/file explorer onto the canvas",
+      "Step 3: Verify drop zone highlight appears when dragging over canvas",
+      "Step 4: Drop the file",
+      "Step 5: Verify image is uploaded and appears on slide",
+      "Step 6: Verify image appears in image tray"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can drag multiple images from desktop at once",
+    "steps": [
+      "Step 1: Open editor with an empty photo slide",
+      "Step 2: Select 3 image files on desktop",
+      "Step 3: Drag all 3 onto the slide canvas",
+      "Step 4: Drop them",
+      "Step 5: Verify all 3 images are uploaded",
+      "Step 6: Verify all 3 appear on the slide with auto-layout",
+      "Step 7: Verify all 3 appear in the image tray"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Upload button opens file picker and supports multiple selection",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click upload button (in image tray or toolbar)",
+      "Step 3: Verify file picker opens",
+      "Step 4: Select multiple images",
+      "Step 5: Confirm selection",
+      "Step 6: Verify all images are uploaded and added to tray"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Supported image formats: JPEG, PNG, WebP",
+    "steps": [
+      "Step 1: Upload a JPEG image, verify success",
+      "Step 2: Upload a PNG image, verify success",
+      "Step 3: Upload a WebP image, verify success"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Image upload generates thumbnail and extracts metadata",
+    "steps": [
+      "Step 1: Upload an image to the project",
+      "Step 2: Verify original is stored in Supabase Storage",
+      "Step 3: Verify thumbnail is generated and stored",
+      "Step 4: Verify image record has width, height, aspect_ratio, file_size, mime_type"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Optimistic UI: image appears immediately with loading spinner during upload",
+    "steps": [
+      "Step 1: Paste or drag a large image onto a slide",
+      "Step 2: Verify image placeholder/preview appears immediately",
+      "Step 3: Verify loading spinner overlay is shown",
+      "Step 4: Wait for upload to complete",
+      "Step 5: Verify spinner disappears and final image is rendered"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Image tray shows all images uploaded to the project",
+    "steps": [
+      "Step 1: Upload 5 images to a project across different slides",
+      "Step 2: Verify image tray shows all 5 images",
+      "Step 3: Verify horizontal scroll works when tray overflows"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Images can be uploaded directly to the tray without placing on a slide",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click upload button in image tray",
+      "Step 3: Select images",
+      "Step 4: Verify images appear in tray but not on any slide"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can drag image from tray onto a slide",
+    "steps": [
+      "Step 1: Ensure image tray has images",
+      "Step 2: Drag an image from the tray onto the current slide canvas",
+      "Step 3: Verify image is added to the slide",
+      "Step 4: Verify layout recalculates"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Deleting image from tray removes it from all slides with confirmation",
+    "steps": [
+      "Step 1: Add an image to 2 different slides",
+      "Step 2: Open image tray",
+      "Step 3: Right-click or context menu on the image in tray",
+      "Step 4: Click delete",
+      "Step 5: Verify confirmation dialog appears",
+      "Step 6: Confirm deletion",
+      "Step 7: Verify image is removed from tray",
+      "Step 8: Verify image is removed from both slides",
+      "Step 9: Verify both slides re-layout"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Image tray shows badge on images currently used on a slide",
+    "steps": [
+      "Step 1: Add an image to a slide",
+      "Step 2: Check image tray",
+      "Step 3: Verify the used image shows a usage badge/indicator",
+      "Step 4: Remove image from slide",
+      "Step 5: Verify badge is removed from tray thumbnail"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 1 photo fills entire photo region (full bleed)",
+    "steps": [
+      "Step 1: Open a photo slide",
+      "Step 2: Add 1 image",
+      "Step 3: Verify image fills the entire photo region of the slide"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 2 photos side by side (both portrait)",
+    "steps": [
+      "Step 1: Add 2 portrait images to a slide",
+      "Step 2: Verify layout shows them side by side",
+      "Step 3: Verify each takes approximately 50% width"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 2 photos stacked vertically (both landscape)",
+    "steps": [
+      "Step 1: Add 2 landscape images to a slide",
+      "Step 2: Verify layout shows them stacked vertically",
+      "Step 3: Verify each takes approximately 50% height"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 2 photos with 2/3 + 1/3 split",
+    "steps": [
+      "Step 1: Add 2 images with mixed aspect ratios",
+      "Step 2: Verify layout engine may choose 2/3 + 1/3 variant",
+      "Step 3: Verify user can manually cycle to this variant"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 3 photos - one large left + two stacked right",
+    "steps": [
+      "Step 1: Add 1 landscape + 2 portrait images",
+      "Step 2: Verify layout shows one large on left, two stacked on right",
+      "Step 3: Verify proportions are approximately 50/50 width split"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 3 photos - three equal columns",
+    "steps": [
+      "Step 1: Add 3 images with similar aspect ratios",
+      "Step 2: Verify layout shows three equal columns",
+      "Step 3: Verify each column is approximately 1/3 width"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 3 photos - all 5 variants accessible via variant picker",
+    "steps": [
+      "Step 1: Add 3 images to a slide",
+      "Step 2: Open the layout variant picker",
+      "Step 3: Verify 5 variant options are shown (A through E)",
+      "Step 4: Click variant B, verify layout changes",
+      "Step 5: Click variant C, verify layout changes",
+      "Step 6: Click variant D, verify layout changes",
+      "Step 7: Click variant E, verify layout changes",
+      "Step 8: Click variant A, verify layout returns to original"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 4 photos - 2x2 grid (default)",
+    "steps": [
+      "Step 1: Add 4 images to a slide",
+      "Step 2: Verify default layout is 2x2 grid",
+      "Step 3: Verify each image takes approximately 25% of the area"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 4 photos - all variants accessible",
+    "steps": [
+      "Step 1: Add 4 images to a slide",
+      "Step 2: Open variant picker",
+      "Step 3: Cycle through all 4 variants (A, B, C, D)",
+      "Step 4: Verify each variant renders correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 5 photos - two top + three bottom",
+    "steps": [
+      "Step 1: Add 5 images to a slide",
+      "Step 2: Verify layout shows 2 on top row, 3 on bottom row",
+      "Step 3: Verify proportions look balanced"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 5 photos - all variants accessible",
+    "steps": [
+      "Step 1: Add 5 images to a slide",
+      "Step 2: Open variant picker",
+      "Step 3: Cycle through all 4 variants",
+      "Step 4: Verify each layout renders correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 6 photos - 2x3 grid",
+    "steps": [
+      "Step 1: Add 6 images to a slide",
+      "Step 2: Verify default layout is 2 rows of 3",
+      "Step 3: Verify images fill the photo region with uniform gaps"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 6 photos - all variants accessible",
+    "steps": [
+      "Step 1: Add 6 images to a slide",
+      "Step 2: Open variant picker",
+      "Step 3: Cycle through all 4 variants (A-D)",
+      "Step 4: Verify each renders correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 7 photos - all variants accessible",
+    "steps": [
+      "Step 1: Add 7 images to a slide",
+      "Step 2: Open variant picker",
+      "Step 3: Cycle through all 4 variants",
+      "Step 4: Verify each variant renders correctly with proper proportions"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 8 photos - 2x4 grid",
+    "steps": [
+      "Step 1: Add 8 images to a slide",
+      "Step 2: Verify layout shows 2 rows of 4",
+      "Step 3: Verify all images are visible and properly sized"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: 8 photos - all variants accessible",
+    "steps": [
+      "Step 1: Add 8 images to a slide",
+      "Step 2: Open variant picker",
+      "Step 3: Cycle through all 4 variants",
+      "Step 4: Verify each renders correctly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout selects best variant based on aspect ratio scoring",
+    "steps": [
+      "Step 1: Add 3 images: 2 portrait + 1 landscape",
+      "Step 2: Verify auto-selected variant is appropriate (e.g., one large landscape left + 2 portrait stacked right)",
+      "Step 3: Remove images and add 3 landscape images",
+      "Step 4: Verify auto-selected variant changes to match new ratios"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Layout engine classifies images as landscape, portrait, or square",
+    "steps": [
+      "Step 1: Upload a landscape image (ratio > 1.2)",
+      "Step 2: Upload a portrait image (ratio < 0.8)",
+      "Step 3: Upload a square image (ratio ~1.0)",
+      "Step 4: Verify layout engine correctly classifies each for scoring"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Layout gaps are uniform and configurable (default 8px)",
+    "steps": [
+      "Step 1: Add 4 images to a slide",
+      "Step 2: Verify gaps between images are uniform 8px",
+      "Step 3: Open settings, change gap to 16px",
+      "Step 4: Verify gaps update to 16px",
+      "Step 5: Change gap to 0px",
+      "Step 6: Verify images are flush against each other"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Image border radius is configurable (default 0px)",
+    "steps": [
+      "Step 1: Add images to a slide",
+      "Step 2: Verify images have 0px border radius (sharp corners)",
+      "Step 3: Open settings, change border radius to 12px",
+      "Step 4: Verify images now have rounded corners"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Adding an image re-triggers auto-layout calculation",
+    "steps": [
+      "Step 1: Add 2 images to a slide (2-image layout)",
+      "Step 2: Add a 3rd image",
+      "Step 3: Verify layout recalculates to a 3-image variant",
+      "Step 4: Add a 4th image",
+      "Step 5: Verify layout recalculates to a 4-image variant"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Removing an image re-triggers auto-layout calculation",
+    "steps": [
+      "Step 1: Add 4 images to a slide (4-image layout)",
+      "Step 2: Remove one image",
+      "Step 3: Verify layout recalculates to a 3-image variant",
+      "Step 4: Remove another image",
+      "Step 5: Verify layout recalculates to a 2-image variant"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can swap images between slots by dragging",
+    "steps": [
+      "Step 1: Add 3 images to a slide",
+      "Step 2: Drag image from slot 1 to slot 3",
+      "Step 3: Verify the two images swap positions",
+      "Step 4: Verify layout structure remains the same (only contents swapped)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can manually select a different layout variant",
+    "steps": [
+      "Step 1: Add 4 images to a slide",
+      "Step 2: Note the auto-selected variant",
+      "Step 3: Click variant picker or use left/right arrows",
+      "Step 4: Select a different variant",
+      "Step 5: Verify layout updates to the selected variant",
+      "Step 6: Verify selection persists (saved to slide data)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Clicking an image slot shows floating toolbar",
+    "steps": [
+      "Step 1: Add images to a slide",
+      "Step 2: Click on one image",
+      "Step 3: Verify floating toolbar appears near the selection",
+      "Step 4: Verify toolbar has fill/fit, crop, rotate, remove buttons"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Fill mode: image fills its slot completely (zoom/crop)",
+    "steps": [
+      "Step 1: Add a landscape image to a square slot layout",
+      "Step 2: Verify image is in fill mode by default",
+      "Step 3: Verify image is zoomed to fill the slot, with some cropping"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Fit mode: image fits entirely within slot with background",
+    "steps": [
+      "Step 1: Add an image to a slide and select it",
+      "Step 2: Click floating toolbar",
+      "Step 3: Switch to 'Fit' mode",
+      "Step 4: Verify entire image is visible within the slot",
+      "Step 5: Verify letterbox areas are filled with blurred background (default)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Fit mode background options: blur, solid color, white, black",
+    "steps": [
+      "Step 1: Set an image to Fit mode",
+      "Step 2: Verify default background is blurred version of image",
+      "Step 3: Switch to solid color background, pick a color",
+      "Step 4: Verify background changes to selected color",
+      "Step 5: Switch to white background, verify",
+      "Step 6: Switch to black background, verify"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can adjust crop position in fill mode by dragging",
+    "steps": [
+      "Step 1: Add a landscape image in fill mode to a square-ish slot",
+      "Step 2: Click and drag on the image to adjust crop/pan position",
+      "Step 3: Verify the visible portion of the image shifts",
+      "Step 4: Release drag",
+      "Step 5: Verify new pan position is saved"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Rotate image in 90-degree increments",
+    "steps": [
+      "Step 1: Add an image and select it",
+      "Step 2: Click rotate in floating toolbar",
+      "Step 3: Verify image rotates 90 degrees",
+      "Step 4: Click rotate again, verify 180 degrees",
+      "Step 5: Click rotate again, verify 270 degrees",
+      "Step 6: Click rotate again, verify back to 0 degrees"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Remove image from slide returns it to tray only",
+    "steps": [
+      "Step 1: Add an image to a slide",
+      "Step 2: Select the image",
+      "Step 3: Click 'Remove from slide' in floating toolbar",
+      "Step 4: Verify image is removed from the slide",
+      "Step 5: Verify image still exists in the image tray",
+      "Step 6: Verify layout recalculates for remaining images"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Crop tool: user can drag crop rectangle on image",
+    "steps": [
+      "Step 1: Add an image and select it",
+      "Step 2: Click 'Crop' in floating toolbar",
+      "Step 3: Verify crop overlay appears on the image",
+      "Step 4: Drag crop handles to adjust rectangle",
+      "Step 5: Confirm crop",
+      "Step 6: Verify image renders with the applied crop"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Delete/Backspace removes selected image from slide",
+    "steps": [
+      "Step 1: Add an image and click to select it",
+      "Step 2: Press Delete or Backspace key",
+      "Step 3: Verify image is removed from the slide",
+      "Step 4: Verify image remains in the tray"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Escape deselects current selection",
+    "steps": [
+      "Step 1: Click on an image in a slide to select it",
+      "Step 2: Verify floating toolbar is visible",
+      "Step 3: Press Escape",
+      "Step 4: Verify selection is cleared",
+      "Step 5: Verify floating toolbar disappears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text region: heading and body fields on photo slide",
+    "steps": [
+      "Step 1: Add a photo slide",
+      "Step 2: Verify heading text field is accessible",
+      "Step 3: Type a heading 'January Photos'",
+      "Step 4: Verify heading renders on the slide",
+      "Step 5: Type body text 'Our trip to the mountains'",
+      "Step 6: Verify body text renders on the slide"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text region position: top (text above photos)",
+    "steps": [
+      "Step 1: Add a photo slide with images and text",
+      "Step 2: Set text position to 'Top'",
+      "Step 3: Verify text renders above the photo region",
+      "Step 4: Verify photo layout uses remaining space below text"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text region position: bottom (text below photos)",
+    "steps": [
+      "Step 1: Set text position to 'Bottom'",
+      "Step 2: Verify text renders below the photo region",
+      "Step 3: Verify photos use space above text"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text region position: left (~30% width)",
+    "steps": [
+      "Step 1: Set text position to 'Left'",
+      "Step 2: Verify text renders on the left side (~30% width)",
+      "Step 3: Verify photos use remaining ~70% width on right"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text region position: right (~30% width)",
+    "steps": [
+      "Step 1: Set text position to 'Right'",
+      "Step 2: Verify text renders on the right side (~30% width)",
+      "Step 3: Verify photos use remaining ~70% width on left"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text region position: none (photos fill entire slide)",
+    "steps": [
+      "Step 1: Set text position to 'None'",
+      "Step 2: Verify no text region is visible",
+      "Step 3: Verify photos fill the entire slide area"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Title slide: hero image with text overlay",
+    "steps": [
+      "Step 1: Add a title slide",
+      "Step 2: Paste or add a hero image",
+      "Step 3: Verify image renders full bleed behind text area",
+      "Step 4: Type heading text",
+      "Step 5: Verify heading is centered over the image",
+      "Step 6: Verify semi-transparent overlay exists for readability",
+      "Step 7: Type subtitle",
+      "Step 8: Verify subtitle renders below heading"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text-only slide: heading and body with no photos",
+    "steps": [
+      "Step 1: Add a text-only slide",
+      "Step 2: Type heading",
+      "Step 3: Type body text",
+      "Step 4: Verify no photo region exists",
+      "Step 5: Verify text fills the slide appropriately"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Chapters: title slides act as section dividers in filmstrip",
+    "steps": [
+      "Step 1: Create multiple slides with a title slide in between",
+      "Step 2: Mark the title slide as chapter start (is_chapter_start)",
+      "Step 3: Verify filmstrip shows chapter grouping label",
+      "Step 4: Verify slides after the title slide are grouped under that chapter"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Chapters are optional - flat list works without chapters",
+    "steps": [
+      "Step 1: Create a project with only photo slides (no title slides)",
+      "Step 2: Verify filmstrip shows a flat list with no chapter labels",
+      "Step 3: Verify all features work normally"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Global setting: heading font selection from curated list",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Find heading font selector",
+      "Step 3: Change font selection",
+      "Step 4: Verify all slide headings update to the new font"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Global setting: body font selection from curated list",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Find body font selector",
+      "Step 3: Change font selection",
+      "Step 4: Verify all slide body text updates to the new font"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Global setting: image gap slider (0-24px)",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Find gap slider",
+      "Step 3: Slide to 0px, verify images are flush",
+      "Step 4: Slide to 24px, verify maximum gap between images"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Global setting: image border radius slider (0-16px)",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Find border radius slider",
+      "Step 3: Slide to 0px, verify sharp corners",
+      "Step 4: Slide to 16px, verify maximum rounding on image corners"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo reverses the last action (Cmd+Z)",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Add an image to a slide",
+      "Step 3: Press Cmd/Ctrl+Z",
+      "Step 4: Verify image is removed (action undone)",
+      "Step 5: Verify undo button is disabled when no more history"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Redo reverses an undo (Cmd+Shift+Z)",
+    "steps": [
+      "Step 1: Perform an action and undo it",
+      "Step 2: Press Cmd/Ctrl+Shift+Z",
+      "Step 3: Verify action is re-applied",
+      "Step 4: Verify redo button is disabled when no more redo history"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo/redo covers image add/remove",
+    "steps": [
+      "Step 1: Add image to slide",
+      "Step 2: Undo -> image removed",
+      "Step 3: Redo -> image restored"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo/redo covers text edits",
+    "steps": [
+      "Step 1: Type heading text",
+      "Step 2: Undo -> text removed",
+      "Step 3: Redo -> text restored"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo/redo covers slide add/delete",
+    "steps": [
+      "Step 1: Add a slide",
+      "Step 2: Undo -> slide removed",
+      "Step 3: Redo -> slide restored"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo/redo covers slide reorder",
+    "steps": [
+      "Step 1: Reorder slides by dragging",
+      "Step 2: Undo -> slides return to original order",
+      "Step 3: Redo -> slides go back to reordered position"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo/redo covers layout variant changes",
+    "steps": [
+      "Step 1: Change layout variant",
+      "Step 2: Undo -> layout returns to previous variant",
+      "Step 3: Redo -> layout goes back to changed variant"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo/redo covers setting changes",
+    "steps": [
+      "Step 1: Change gap size in settings",
+      "Step 2: Undo -> gap returns to previous value",
+      "Step 3: Redo -> gap goes back to new value"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Undo/redo buttons in top bar work the same as keyboard shortcuts",
+    "steps": [
+      "Step 1: Perform an action",
+      "Step 2: Click undo button in top bar",
+      "Step 3: Verify action is undone",
+      "Step 4: Click redo button",
+      "Step 5: Verify action is re-applied"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Present mode: fullscreen slideshow accessible from button",
+    "steps": [
+      "Step 1: Open editor with multiple slides",
+      "Step 2: Click 'Present' button in top bar",
+      "Step 3: Verify fullscreen mode activates",
+      "Step 4: Verify first slide is displayed",
+      "Step 5: Verify no editor UI is visible"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Present mode: navigate with left/right arrow keys",
+    "steps": [
+      "Step 1: Enter present mode",
+      "Step 2: Press right arrow",
+      "Step 3: Verify next slide is shown (instant, no transition)",
+      "Step 4: Press right arrow again for next slide",
+      "Step 5: Press left arrow",
+      "Step 6: Verify previous slide is shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Present mode: navigate by clicking",
+    "steps": [
+      "Step 1: Enter present mode",
+      "Step 2: Click anywhere on the slide",
+      "Step 3: Verify next slide is shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Present mode: shows slide counter (e.g., '3 / 24')",
+    "steps": [
+      "Step 1: Enter present mode with 5 slides",
+      "Step 2: Verify subtle slide counter is visible in bottom corner",
+      "Step 3: Navigate to slide 3",
+      "Step 4: Verify counter shows '3 / 5'"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Present mode: Escape exits back to editor",
+    "steps": [
+      "Step 1: Enter present mode",
+      "Step 2: Press Escape",
+      "Step 3: Verify present mode exits",
+      "Step 4: Verify editor UI is restored"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Present mode: chapter title slides render as own pages",
+    "steps": [
+      "Step 1: Create project with chapter title slides between photo slides",
+      "Step 2: Enter present mode",
+      "Step 3: Navigate through slides",
+      "Step 4: Verify chapter title slides appear as full pages"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Public view page shows present mode without auth",
+    "steps": [
+      "Step 1: Create project with slides and enable public link",
+      "Step 2: Open /view/[project-id] in incognito browser (no auth)",
+      "Step 3: Verify slideshow loads and is navigable",
+      "Step 4: Verify no editor UI is visible",
+      "Step 5: Verify 'Made with Collage Creator' badge is visible"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "PDF export: one slide per page",
+    "steps": [
+      "Step 1: Open editor with multiple slides containing images",
+      "Step 2: Click 'Export' button in top bar",
+      "Step 3: Select 'One slide per page' option",
+      "Step 4: Click export/download",
+      "Step 5: Verify PDF file is downloaded",
+      "Step 6: Open PDF and verify each slide is on its own page",
+      "Step 7: Verify images are rendered at high resolution"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "PDF export: two slides per page (book-style)",
+    "steps": [
+      "Step 1: Open editor with 4+ slides",
+      "Step 2: Click Export",
+      "Step 3: Select 'Two slides per page'",
+      "Step 4: Export PDF",
+      "Step 5: Verify two slides appear per page",
+      "Step 6: Verify layout looks correct"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "PDF page orientation matches project aspect ratio",
+    "steps": [
+      "Step 1: Set project aspect ratio to 16:9",
+      "Step 2: Export PDF",
+      "Step 3: Verify PDF pages are landscape",
+      "Step 4: Change aspect ratio to 9:16",
+      "Step 5: Export PDF again",
+      "Step 6: Verify PDF pages are portrait"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-save: changes persist without manual save",
+    "steps": [
+      "Step 1: Open editor and make changes (add text, reorder slides)",
+      "Step 2: Wait for debounced auto-save",
+      "Step 3: Refresh the page",
+      "Step 4: Verify all changes are preserved"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Drop zone highlight appears when dragging files over canvas",
+    "steps": [
+      "Step 1: Open editor with a photo slide",
+      "Step 2: Start dragging files from desktop toward the browser",
+      "Step 3: Drag over the slide canvas area",
+      "Step 4: Verify a visual drop zone highlight/indicator appears",
+      "Step 5: Drag away from canvas",
+      "Step 6: Verify drop zone highlight disappears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Variant picker shows visual previews of layout options",
+    "steps": [
+      "Step 1: Add 4 images to a slide",
+      "Step 2: Open layout variant picker in toolbar",
+      "Step 3: Verify small visual thumbnail previews of each variant option",
+      "Step 4: Click a variant thumbnail",
+      "Step 5: Verify layout switches to that variant"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Filmstrip shows slide thumbnails that reflect actual slide content",
+    "steps": [
+      "Step 1: Create slides with different images and text",
+      "Step 2: Verify filmstrip thumbnails show miniature versions of each slide's content",
+      "Step 3: Make a change to a slide",
+      "Step 4: Verify its thumbnail in filmstrip updates"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Back to projects link in editor navigates to /projects",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click back arrow/link in top bar",
+      "Step 3: Verify navigation to /projects list page"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete end-to-end flow: create project, add slides, add images, present, export",
+    "steps": [
+      "Step 1: Log in",
+      "Step 2: Click '+ New Project', name it 'E2E Test'",
+      "Step 3: Verify editor opens with one title slide",
+      "Step 4: Add a hero image to the title slide via paste",
+      "Step 5: Type heading 'My Collage'",
+      "Step 6: Add a new photo slide",
+      "Step 7: Drag 4 images from desktop onto the slide",
+      "Step 8: Verify 2x2 auto-layout appears",
+      "Step 9: Change layout variant using picker",
+      "Step 10: Add text heading to the photo slide",
+      "Step 11: Add another photo slide with 3 images",
+      "Step 12: Reorder slides in filmstrip by dragging",
+      "Step 13: Click Present, navigate through all slides",
+      "Step 14: Exit present mode",
+      "Step 15: Click Export, select one-per-page, download PDF",
+      "Step 16: Verify PDF contains all slides"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete paste workflow: copy from external source, paste into editor",
+    "steps": [
+      "Step 1: Open a photo viewing site in another tab",
+      "Step 2: Right-click an image and 'Copy image'",
+      "Step 3: Switch to Collage Creator editor tab",
+      "Step 4: Ensure a photo slide is selected",
+      "Step 5: Press Cmd/Ctrl+V",
+      "Step 6: Verify optimistic UI shows image immediately with spinner",
+      "Step 7: Wait for upload to complete",
+      "Step 8: Verify image is on the slide",
+      "Step 9: Verify image is in the tray",
+      "Step 10: Verify layout updated correctly"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete project settings flow: configure all settings",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click settings gear icon",
+      "Step 3: Change heading font",
+      "Step 4: Change body font",
+      "Step 5: Adjust image gap to 16px",
+      "Step 6: Adjust border radius to 8px",
+      "Step 7: Change aspect ratio to 4:3",
+      "Step 8: Toggle public link on",
+      "Step 9: Close settings drawer",
+      "Step 10: Verify all changes are reflected on the canvas",
+      "Step 11: Refresh page and verify settings persisted"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete image controls flow: test all per-image features on one image",
+    "steps": [
+      "Step 1: Add a landscape image to a slide",
+      "Step 2: Click the image to select it",
+      "Step 3: Verify floating toolbar appears",
+      "Step 4: Verify image is in Fill mode by default",
+      "Step 5: Switch to Fit mode, verify letterbox with blur",
+      "Step 6: Change fit background to white",
+      "Step 7: Switch back to Fill mode",
+      "Step 8: Drag to adjust crop/pan position",
+      "Step 9: Click rotate, verify 90-degree rotation",
+      "Step 10: Click crop tool, adjust crop rectangle, confirm",
+      "Step 11: Verify final image reflects all adjustments"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete slide management flow: add, duplicate, reorder, delete slides",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Add a photo slide",
+      "Step 3: Add a title slide",
+      "Step 4: Add a text-only slide",
+      "Step 5: Duplicate the photo slide",
+      "Step 6: Drag the duplicated slide before the title slide",
+      "Step 7: Select the text-only slide",
+      "Step 8: Delete it",
+      "Step 9: Verify final order is correct",
+      "Step 10: Verify remaining slides render properly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete chapter flow: create sections with title slides",
+    "steps": [
+      "Step 1: Create project with 8+ slides",
+      "Step 2: Add title slides as chapter dividers at positions 1, 4, 7",
+      "Step 3: Mark each title slide as chapter start",
+      "Step 4: Verify filmstrip groups slides into 3 chapters",
+      "Step 5: Verify chapter labels appear above each group",
+      "Step 6: Enter present mode",
+      "Step 7: Navigate through, verify chapter title slides appear as full pages",
+      "Step 8: Export PDF and verify chapter pages are included"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete layout engine test: add images one by one from 1 to 8",
+    "steps": [
+      "Step 1: Start with empty photo slide",
+      "Step 2: Add image 1, verify full bleed layout",
+      "Step 3: Add image 2, verify 2-photo layout",
+      "Step 4: Add image 3, verify 3-photo layout with auto-selection",
+      "Step 5: Add image 4, verify 4-photo layout",
+      "Step 6: Add image 5, verify 5-photo layout",
+      "Step 7: Add image 6, verify 6-photo layout",
+      "Step 8: Add image 7, verify 7-photo layout",
+      "Step 9: Add image 8, verify 8-photo layout",
+      "Step 10: Remove images one by one back to 1, verify each re-layout"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete undo/redo stress test: perform 10 actions then undo all",
+    "steps": [
+      "Step 1: Open editor with a slide",
+      "Step 2: Action 1: Add image",
+      "Step 3: Action 2: Add another image",
+      "Step 4: Action 3: Change layout variant",
+      "Step 5: Action 4: Type heading text",
+      "Step 6: Action 5: Change text position",
+      "Step 7: Action 6: Add a new slide",
+      "Step 8: Action 7: Reorder slides",
+      "Step 9: Action 8: Change gap setting",
+      "Step 10: Action 9: Rotate an image",
+      "Step 11: Action 10: Switch fill/fit mode",
+      "Step 12: Undo all 10 actions one by one",
+      "Step 13: Verify state is back to initial",
+      "Step 14: Redo all 10 actions",
+      "Step 15: Verify final state matches"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete shareable link flow: enable, share, verify access control",
+    "steps": [
+      "Step 1: Create project with slides and images",
+      "Step 2: Open settings, toggle public link ON",
+      "Step 3: Copy the shareable URL",
+      "Step 4: Open URL in incognito \u2014 verify it works",
+      "Step 5: Toggle public link OFF",
+      "Step 6: Reload incognito page \u2014 verify access denied",
+      "Step 7: Toggle link back ON",
+      "Step 8: Verify incognito access works again"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: GET /api/projects returns user's projects",
+    "steps": [
+      "Step 1: Authenticate and call GET /api/projects",
+      "Step 2: Verify response contains array of project objects",
+      "Step 3: Verify each project has id, name, updated_at"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: POST /api/projects creates a new project",
+    "steps": [
+      "Step 1: POST /api/projects with {name: 'New Project'}",
+      "Step 2: Verify 201 response with project data",
+      "Step 3: Verify project has default settings (16:9, Inter font, etc.)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: GET /api/projects/[id] returns full project with slides and images",
+    "steps": [
+      "Step 1: Create project with slides and images",
+      "Step 2: GET /api/projects/[id]",
+      "Step 3: Verify response includes project settings, all slides, all images, all slide_images"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: PATCH /api/projects/[id] updates project settings",
+    "steps": [
+      "Step 1: PATCH /api/projects/[id] with {heading_font: 'Georgia'}",
+      "Step 2: Verify 200 response",
+      "Step 3: GET project and verify heading_font is 'Georgia'"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: DELETE /api/projects/[id] archives the project",
+    "steps": [
+      "Step 1: DELETE /api/projects/[id]",
+      "Step 2: Verify 200 response",
+      "Step 3: GET /api/projects and verify project no longer appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: POST /api/projects/[id]/duplicate deep copies a project",
+    "steps": [
+      "Step 1: POST /api/projects/[id]/duplicate",
+      "Step 2: Verify new project is returned with different id",
+      "Step 3: Verify new project has same slides and images"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: POST /api/projects/[id]/slides creates a new slide",
+    "steps": [
+      "Step 1: POST /api/projects/[id]/slides with {slide_type: 'photo'}",
+      "Step 2: Verify slide is created with correct sort_order"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: PATCH /api/projects/[id]/slides/[slideId] updates slide",
+    "steps": [
+      "Step 1: PATCH slide with {heading_text: 'Test', text_position: 'top'}",
+      "Step 2: Verify changes persisted"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: PATCH /api/projects/[id]/slides/reorder batch updates sort_order",
+    "steps": [
+      "Step 1: Create 3 slides",
+      "Step 2: PATCH reorder with new sort order",
+      "Step 3: GET project and verify new order"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: POST /api/projects/[id]/images uploads images",
+    "steps": [
+      "Step 1: POST multipart form with image file",
+      "Step 2: Verify image record created with storage URLs",
+      "Step 3: Verify thumbnail was generated"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: DELETE /api/projects/[id]/images/[imageId] removes image from project",
+    "steps": [
+      "Step 1: DELETE image",
+      "Step 2: Verify image removed from all slides",
+      "Step 3: Verify storage files cleaned up"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: POST /api/projects/[id]/slides/[slideId]/images adds image to slide",
+    "steps": [
+      "Step 1: POST with {image_id: '...'}",
+      "Step 2: Verify slide_image record created",
+      "Step 3: Verify slot_index assigned"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: PATCH slide image updates per-image settings",
+    "steps": [
+      "Step 1: PATCH /api/projects/[id]/slides/[slideId]/images/[slideImageId] with {fill_mode: 'fit', rotation: 90}",
+      "Step 2: Verify settings persisted"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: GET /api/view/[id] returns public project data when is_public is true",
+    "steps": [
+      "Step 1: Set project is_public to true",
+      "Step 2: GET /api/view/[id] without auth",
+      "Step 3: Verify project data returned"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: GET /api/view/[id] returns 403/404 when is_public is false",
+    "steps": [
+      "Step 1: Set project is_public to false",
+      "Step 2: GET /api/view/[id] without auth",
+      "Step 3: Verify 403 or 404 response"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "API: POST /api/projects/[id]/export/pdf generates PDF",
+    "steps": [
+      "Step 1: POST /api/projects/[id]/export/pdf with {layout: 'one-per-page'}",
+      "Step 2: Verify PDF binary response",
+      "Step 3: Verify PDF is valid"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Database: projects table has correct columns and defaults",
+    "steps": [
+      "Step 1: Insert a project with just user_id and name",
+      "Step 2: Verify default values: aspect_ratio='16:9', heading_font='Inter', body_font='Inter', image_gap=8, image_border_radius=0, is_public=false, is_archived=false"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Database: slides table cascades on project delete",
+    "steps": [
+      "Step 1: Create project with slides",
+      "Step 2: Delete the project",
+      "Step 3: Verify all associated slides are deleted"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Database: slide_images table cascades on slide delete",
+    "steps": [
+      "Step 1: Create slide with slide_images",
+      "Step 2: Delete the slide",
+      "Step 3: Verify all associated slide_images are deleted"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Database: images table cascades on project delete",
+    "steps": [
+      "Step 1: Create project with images",
+      "Step 2: Delete the project",
+      "Step 3: Verify all images are deleted"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Database: Row Level Security - users can only access own projects",
+    "steps": [
+      "Step 1: Create project as User A",
+      "Step 2: Attempt to query project as User B via Supabase client",
+      "Step 3: Verify User B gets empty result or access denied"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Error handling: failed image upload shows error message",
+    "steps": [
+      "Step 1: Attempt to upload an invalid/corrupted file",
+      "Step 2: Verify error message is displayed to user",
+      "Step 3: Verify app remains in usable state"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Error handling: network failure during save shows notification",
+    "steps": [
+      "Step 1: Make changes in editor",
+      "Step 2: Simulate network failure",
+      "Step 3: Verify error notification about save failure appears"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Empty state: no projects shows helpful message and create button",
+    "steps": [
+      "Step 1: Log in with a user who has no projects",
+      "Step 2: Verify empty state message is shown",
+      "Step 3: Verify '+ New Project' button is prominent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Empty state: empty slide shows placeholder or guidance",
+    "steps": [
+      "Step 1: Add a new photo slide with no images",
+      "Step 2: Verify helpful placeholder shown (e.g., 'Drag images here' or upload prompt)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Empty state: empty image tray shows upload prompt",
+    "steps": [
+      "Step 1: Open project with no images uploaded",
+      "Step 2: Verify image tray shows upload prompt or helpful message"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Confirmation dialog for deleting a slide",
+    "steps": [
+      "Step 1: Select a slide with content",
+      "Step 2: Initiate delete",
+      "Step 3: Verify confirmation dialog appears",
+      "Step 4: Cancel and verify slide is NOT deleted",
+      "Step 5: Initiate delete again and confirm",
+      "Step 6: Verify slide is deleted"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Memory management: object URLs are revoked after use",
+    "steps": [
+      "Step 1: Upload multiple images",
+      "Step 2: Navigate between slides multiple times",
+      "Step 3: Verify no memory leaks from unreleased blob/object URLs"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Filmstrip: 'Add slide' button has dropdown for slide types",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Click '+ Add Slide' button at bottom of filmstrip",
+      "Step 3: Verify dropdown shows: Photo slide, Title slide, Text-only slide",
+      "Step 4: Select each type and verify correct slide is created"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Multiple images pasted at once all go to current slide",
+    "steps": [
+      "Step 1: Copy multiple images to clipboard (if supported)",
+      "Step 2: Paste onto current slide",
+      "Step 3: Verify all images are added to the same slide"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Slide thumbnails in filmstrip have drag handles for reorder",
+    "steps": [
+      "Step 1: Open editor with multiple slides",
+      "Step 2: Verify each slide thumbnail has a visible drag handle",
+      "Step 3: Grab the handle and drag to reorder"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Settings drawer slides in from right with smooth transition",
+    "steps": [
+      "Step 1: Click settings gear",
+      "Step 2: Verify drawer slides in from the right side",
+      "Step 3: Verify 200ms ease transition",
+      "Step 4: Close drawer and verify it slides out smoothly"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Zustand store manages editor state correctly",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify Zustand store holds current slide, slides array, images",
+      "Step 3: Make changes and verify store updates",
+      "Step 4: Verify components re-render based on store changes"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Project list context menu has rename, duplicate, delete options",
+    "steps": [
+      "Step 1: Navigate to /projects",
+      "Step 2: Click three-dot menu on a project card",
+      "Step 3: Verify 'Rename', 'Duplicate', and 'Delete' options are shown"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Floating toolbar positioned near the selected element",
+    "steps": [
+      "Step 1: Click an image in the top-left of the slide",
+      "Step 2: Verify toolbar appears near the image (not off-screen)",
+      "Step 3: Click an image in the bottom-right",
+      "Step 4: Verify toolbar adjusts position appropriately"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text position selector available in floating toolbar for text regions",
+    "steps": [
+      "Step 1: Click on a text region in a slide",
+      "Step 2: Verify floating toolbar shows position preset selector",
+      "Step 3: Change position from bottom to left",
+      "Step 4: Verify layout updates"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "App runs on port 3000",
+    "steps": [
+      "Step 1: Start the development server",
+      "Step 2: Verify app is accessible at http://localhost:3000"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Selected slide in filmstrip has visual highlight",
+    "steps": [
+      "Step 1: Open editor with multiple slides",
+      "Step 2: Click different slides",
+      "Step 3: Verify the selected slide has a distinct visual indicator (2px ring)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Main canvas shows gray workspace around the slide",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify slide has white background",
+      "Step 3: Verify area around the slide (workspace) is gray"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Zoom fit-to-screen correctly sizes slide to canvas area",
+    "steps": [
+      "Step 1: Open editor with a 16:9 slide",
+      "Step 2: Click 'fit to screen' zoom control",
+      "Step 3: Verify slide fills the available canvas space with margins",
+      "Step 4: Resize browser window",
+      "Step 5: Click fit to screen again",
+      "Step 6: Verify slide re-fits to new canvas size"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Heading text on slide uses the selected heading font",
+    "steps": [
+      "Step 1: Set heading font to a specific font in settings",
+      "Step 2: Type a heading on a slide",
+      "Step 3: Verify the heading renders in the selected font"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Body text on slide uses the selected body font",
+    "steps": [
+      "Step 1: Set body font to a specific font in settings",
+      "Step 2: Type body text on a slide",
+      "Step 3: Verify the body text renders in the selected font"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Supabase Storage: images stored in 'project-images' bucket",
+    "steps": [
+      "Step 1: Upload an image",
+      "Step 2: Check Supabase Storage",
+      "Step 3: Verify the image exists in the 'project-images' bucket",
+      "Step 4: Verify both original and thumbnail are stored"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Login page: centered card with minimal white background design",
+    "steps": [
+      "Step 1: Navigate to /login",
+      "Step 2: Take screenshot",
+      "Step 3: Verify centered card layout",
+      "Step 4: Verify white background",
+      "Step 5: Verify simple, minimal form design"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Signup page: matches login page design consistency",
+    "steps": [
+      "Step 1: Navigate to /signup",
+      "Step 2: Take screenshot",
+      "Step 3: Verify design matches login page style",
+      "Step 4: Verify consistent typography, spacing, and colors"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Page background uses warm off-white (#F8F8F8)",
+    "steps": [
+      "Step 1: Navigate to any page",
+      "Step 2: Verify background color is #F8F8F8 or equivalent warm off-white"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Primary text color is rgba(0,0,0,0.85)",
+    "steps": [
+      "Step 1: Navigate to any page with text",
+      "Step 2: Inspect primary text elements",
+      "Step 3: Verify text color is rgba(0,0,0,0.85) or equivalent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Secondary text uses rgba(0,0,0,0.60)",
+    "steps": [
+      "Step 1: Find secondary text elements (subtitles, descriptions)",
+      "Step 2: Verify color is rgba(0,0,0,0.60)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Primary buttons: black background, warm white text, 20px radius",
+    "steps": [
+      "Step 1: Find primary CTA buttons (login, create project)",
+      "Step 2: Verify background is #000",
+      "Step 3: Verify text color is #F8F8F8",
+      "Step 4: Verify border-radius is 20px",
+      "Step 5: Verify hover state shows rgba(0,0,0,0.90)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Cards use 24px border radius, subtle shadow, white background",
+    "steps": [
+      "Step 1: Navigate to /projects",
+      "Step 2: Inspect project cards",
+      "Step 3: Verify border-radius is ~24px",
+      "Step 4: Verify shadow is rgba(0,0,0,0.08) 0 0 8px",
+      "Step 5: Verify background is rgba(255,255,255,0.9)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Filmstrip slide thumbnails have 12px border radius",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Inspect slide thumbnails in filmstrip",
+      "Step 3: Verify border-radius is 12px",
+      "Step 4: Verify unselected thumbnails have 1px light border"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Selected filmstrip thumbnail has 2px ring",
+    "steps": [
+      "Step 1: Click a slide in filmstrip",
+      "Step 2: Verify 2px ring/border using text-primary color"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Floating toolbar: frosted glass effect with backdrop blur",
+    "steps": [
+      "Step 1: Select an image to trigger floating toolbar",
+      "Step 2: Verify toolbar has rgba(255,255,255,0.9) background",
+      "Step 3: Verify backdrop-filter: blur(24px)",
+      "Step 4: Verify border-radius is 20px",
+      "Step 5: Verify subtle shadow"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Settings drawer: frosted glass with 30px border radius",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Verify rgba(255,255,255,0.95) background",
+      "Step 3: Verify backdrop-filter: blur(24px)",
+      "Step 4: Verify border-radius is 30px",
+      "Step 5: Verify shadow: rgba(0,0,0,0.12) 0 4px 24px"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Input fields: 12px radius, 1px medium stroke border",
+    "steps": [
+      "Step 1: Navigate to login page or settings drawer",
+      "Step 2: Inspect input fields",
+      "Step 3: Verify border-radius is 12px",
+      "Step 4: Verify border is 1px with stroke-medium color"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Typography: headings use light weight (300), tight letter-spacing",
+    "steps": [
+      "Step 1: Find heading elements (H1, H2)",
+      "Step 2: Verify font-weight is 300",
+      "Step 3: Verify letter-spacing is ~-0.04em for large headings"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Typography: body text is 16px, weight 400, 1.25em line-height",
+    "steps": [
+      "Step 1: Find body text elements",
+      "Step 2: Verify font-size is 16px",
+      "Step 3: Verify font-weight is 400",
+      "Step 4: Verify line-height is ~1.25em"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Spacing: generous breathing room between sections (~200px)",
+    "steps": [
+      "Step 1: Navigate to project list or main pages",
+      "Step 2: Verify major sections have ~200px spacing between them"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Editor layout: filmstrip ~200px wide, canvas fills remaining space",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify filmstrip sidebar is approximately 200px wide",
+      "Step 3: Verify main canvas fills the remaining horizontal space"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Image tray is ~120px tall when expanded",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify image tray at bottom is approximately 120px tall",
+      "Step 3: Verify it has horizontal scroll for many images"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Top bar layout: back link left, project name center-left, controls right",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Verify back arrow/link is on the left",
+      "Step 3: Verify project name is editable and center-left positioned",
+      "Step 4: Verify zoom, undo/redo, settings, present, export buttons are on the right"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Project list page: grid layout of project cards",
+    "steps": [
+      "Step 1: Navigate to /projects with multiple projects",
+      "Step 2: Verify cards are in a grid layout",
+      "Step 3: Verify cards show thumbnail, name, and date",
+      "Step 4: Verify spacing between cards is consistent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Project list: header with app name, new project button, user menu",
+    "steps": [
+      "Step 1: Navigate to /projects",
+      "Step 2: Verify 'Collage Creator' app name/logo",
+      "Step 3: Verify '+ New Project' button",
+      "Step 4: Verify user menu (avatar or dropdown)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Sliders: black thumb, fill-secondary track, active track fill",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Inspect gap slider and border radius slider",
+      "Step 3: Verify thumb is #000",
+      "Step 4: Verify track background is fill-secondary",
+      "Step 5: Verify active/filled portion uses rgba(0,0,0,0.60)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Hover transitions: smooth opacity/background changes on interactive elements",
+    "steps": [
+      "Step 1: Hover over buttons, cards, and interactive elements",
+      "Step 2: Verify smooth transition effects",
+      "Step 3: Verify no abrupt color changes"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Floating toolbar appears with 100ms fade-in",
+    "steps": [
+      "Step 1: Click an image to trigger floating toolbar",
+      "Step 2: Verify toolbar fades in (not instant appear)",
+      "Step 3: Verify animation is approximately 100ms"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Drawer transitions are 200ms ease",
+    "steps": [
+      "Step 1: Open settings drawer",
+      "Step 2: Verify transition is smooth, approximately 200ms",
+      "Step 3: Close drawer and verify same smooth transition"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Present mode: slide fills entire viewport, minimal chrome",
+    "steps": [
+      "Step 1: Enter present mode",
+      "Step 2: Verify slide content fills the entire viewport",
+      "Step 3: Verify no UI chrome except subtle slide counter",
+      "Step 4: Verify counter is in bottom-right corner"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Public view: 'Made with Collage Creator' badge in bottom-left",
+    "steps": [
+      "Step 1: Open a public view page",
+      "Step 2: Verify subtle badge/watermark in bottom-left",
+      "Step 3: Verify badge text says 'Made with Collage Creator'"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Title slide: semi-transparent overlay over hero image for text readability",
+    "steps": [
+      "Step 1: Create a title slide with hero image and text",
+      "Step 2: Verify semi-transparent dark overlay between image and text",
+      "Step 3: Verify text is clearly readable over the image"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Icons are simple, thick-stroked, minimal detail",
+    "steps": [
+      "Step 1: Review all icons used in the UI (toolbar, buttons, navigation)",
+      "Step 2: Verify consistent icon style: simple, thick strokes, minimal detail",
+      "Step 3: Verify icons are from a cohesive set (e.g., Lucide)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Fill system: secondary fills use rgba(0,0,0,0.08)",
+    "steps": [
+      "Step 1: Find secondary buttons or chip elements",
+      "Step 2: Verify background is rgba(0,0,0,0.08)",
+      "Step 3: Hover and verify fill-secondary-hover rgba(0,0,0,0.12)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Border strokes use light (0.06) and medium (0.12) opacity",
+    "steps": [
+      "Step 1: Find bordered elements",
+      "Step 2: Verify stroke-light borders are rgba(0,0,0,0.06)",
+      "Step 3: Verify stroke-medium borders are rgba(0,0,0,0.12)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Card internal padding is 32px with 15-20px gap between elements",
+    "steps": [
+      "Step 1: Inspect project cards",
+      "Step 2: Verify internal padding is 32px",
+      "Step 3: Verify gap between card elements is 15-20px"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "The overall feel: clean white studio, soft rounded forms, photos are the star",
+    "steps": [
+      "Step 1: Open the editor with a slide containing photos",
+      "Step 2: Take a screenshot of the full editor",
+      "Step 3: Verify the UI chrome is minimal and near-monochromatic",
+      "Step 4: Verify photos are the visual focus",
+      "Step 5: Verify rounded corners, generous spacing, soft forms throughout",
+      "Step 6: Verify the design feels like 'a beautifully lit photography studio'"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Responsive: editor does not break on 1024px width screens",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Resize browser to 1024px width",
+      "Step 3: Verify filmstrip, canvas, and tray still usable",
+      "Step 4: Verify no content overflow or layout breaking"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Navigation bar style matches design system (pill shape, frosted glass)",
+    "steps": [
+      "Step 1: Navigate to project list page",
+      "Step 2: Verify top bar/nav has pill-shaped container",
+      "Step 3: Verify frosted glass effect (backdrop blur + semi-transparent)",
+      "Step 4: Verify ~52px height"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Mono label text: 13px, uppercase, generous letter-spacing (+1.3px)",
+    "steps": [
+      "Step 1: Find mono label text elements (navigation, metadata, system text)",
+      "Step 2: Verify font is monospace",
+      "Step 3: Verify 13px size, uppercase transform",
+      "Step 4: Verify letter-spacing is ~+1.3px"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Brand accent colors are used sparingly and intentionally",
+    "steps": [
+      "Step 1: Review the overall UI",
+      "Step 2: Verify accent colors (red, blue, pink, yellow) are used minimally",
+      "Step 3: Verify primary UI is near-monochromatic (black/white/gray)",
+      "Step 4: Verify any accent use is deliberate (e.g., one color moment)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Drag animations are smooth (via dnd-kit)",
+    "steps": [
+      "Step 1: Drag a slide in the filmstrip",
+      "Step 2: Verify smooth drag animation with visual feedback",
+      "Step 3: Drag an image between slots",
+      "Step 4: Verify smooth swap animation"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "30px border radius used consistently as signature radius on cards and drawers",
+    "steps": [
+      "Step 1: Check project cards, settings drawer, modals",
+      "Step 2: Verify 30px (radius-2xl) is the dominant radius for large containers",
+      "Step 3: Verify consistency across all major surfaces"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Empty states are visually clean with helpful guidance",
+    "steps": [
+      "Step 1: View empty project list",
+      "Step 2: Verify clean, well-designed empty state",
+      "Step 3: View empty slide",
+      "Step 4: Verify encouraging placeholder text or icon",
+      "Step 5: Verify design consistency with the rest of the app"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete new user flow: sign up, create first project, add content",
+    "steps": [
+      "Step 1: Navigate to /signup",
+      "Step 2: Create a new account",
+      "Step 3: Verify redirect to /projects",
+      "Step 4: Verify empty state with create project prompt",
+      "Step 5: Click '+ New Project'",
+      "Step 6: Enter project name",
+      "Step 7: Verify editor opens with title slide",
+      "Step 8: Paste a hero image",
+      "Step 9: Type heading text",
+      "Step 10: Add a photo slide",
+      "Step 11: Upload 3 images via file picker",
+      "Step 12: Verify auto-layout arranges images"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete multi-chapter project creation and presentation",
+    "steps": [
+      "Step 1: Create a new project 'Year in Review'",
+      "Step 2: Edit default title slide: add hero image, heading 'Our Year'",
+      "Step 3: Add chapter title slide 'Q1 - Winter'",
+      "Step 4: Add 3 photo slides with images for Q1",
+      "Step 5: Add chapter title slide 'Q2 - Spring'",
+      "Step 6: Add 2 photo slides with images for Q2",
+      "Step 7: Add chapter title slide 'Q3 - Summer'",
+      "Step 8: Add 4 photo slides with images for Q3",
+      "Step 9: Verify filmstrip shows 3 chapter groups",
+      "Step 10: Enter present mode, navigate through all slides",
+      "Step 11: Verify chapter title slides render as full pages",
+      "Step 12: Exit present mode, export as PDF",
+      "Step 13: Verify PDF has correct page count and layout"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete image management flow: upload, use, move, delete across slides",
+    "steps": [
+      "Step 1: Upload 6 images to the image tray",
+      "Step 2: Drag 3 images from tray to slide 1",
+      "Step 3: Drag 3 images from tray to slide 2",
+      "Step 4: Remove 1 image from slide 1 (should stay in tray)",
+      "Step 5: Verify image returns to tray as unused",
+      "Step 6: Drag the removed image onto slide 2",
+      "Step 7: Verify slide 2 now has 4 images with updated layout",
+      "Step 8: Delete 1 image from tray that's on both slides",
+      "Step 9: Confirm deletion",
+      "Step 10: Verify image removed from tray and affected slides",
+      "Step 11: Verify both slides re-layout correctly"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete PDF export verification with multiple slide types",
+    "steps": [
+      "Step 1: Create project with: title slide, 3 photo slides, text-only slide, chapter title slide",
+      "Step 2: Add images and text to all slides",
+      "Step 3: Export as one-per-page PDF",
+      "Step 4: Verify PDF has 6 pages",
+      "Step 5: Verify title slide page has hero image and overlay text",
+      "Step 6: Verify photo slides have correct layouts with images",
+      "Step 7: Verify text-only slide has heading and body",
+      "Step 8: Export as two-per-page PDF",
+      "Step 9: Verify PDF has 3 pages",
+      "Step 10: Verify two slides per page layout"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete aspect ratio change flow and its effects on layout",
+    "steps": [
+      "Step 1: Create project with default 16:9 ratio",
+      "Step 2: Add photo slide with 4 landscape images",
+      "Step 3: Verify layout in 16:9",
+      "Step 4: Open settings, change to 1:1",
+      "Step 5: Verify slide canvas becomes square",
+      "Step 6: Verify layout re-calculates for new aspect ratio",
+      "Step 7: Change to 9:16 (tall portrait)",
+      "Step 8: Verify slide canvas becomes tall and narrow",
+      "Step 9: Verify layout adapts appropriately",
+      "Step 10: Export PDF and verify page orientation matches"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Performance: lazy load images in filmstrip",
+    "steps": [
+      "Step 1: Create project with 20+ slides with images",
+      "Step 2: Open editor",
+      "Step 3: Verify filmstrip does not load all full-size images at once",
+      "Step 4: Scroll filmstrip and verify thumbnails load as needed"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Performance: image tray virtualizes with 50+ images",
+    "steps": [
+      "Step 1: Upload 50+ images to a project",
+      "Step 2: Open image tray",
+      "Step 3: Verify smooth scrolling without performance issues",
+      "Step 4: Verify only visible images are rendered in DOM"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Slide rendering on canvas respects zoom level",
+    "steps": [
+      "Step 1: Open editor",
+      "Step 2: Set zoom to 50%",
+      "Step 3: Verify slide appears smaller on canvas",
+      "Step 4: Set zoom to 150%",
+      "Step 5: Verify slide appears larger and may scroll"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Auto-layout: gaps between all image slots are uniform",
+    "steps": [
+      "Step 1: Add 6 images to a 2x3 grid layout",
+      "Step 2: Measure gaps between all adjacent images",
+      "Step 3: Verify all gaps are exactly equal (default 8px)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Layout variant picker shows visual thumbnail previews",
+    "steps": [
+      "Step 1: Add 4 images to a slide",
+      "Step 2: Open variant picker",
+      "Step 3: Verify each option shows a small layout diagram/thumbnail",
+      "Step 4: Verify previews clearly differentiate each variant"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "User can cycle layout variants with left/right arrow buttons",
+    "steps": [
+      "Step 1: Add 4 images to a slide",
+      "Step 2: Click right arrow on variant picker",
+      "Step 3: Verify layout changes to next variant",
+      "Step 4: Click left arrow",
+      "Step 5: Verify layout returns to previous variant"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Fill mode: default for newly added images",
+    "steps": [
+      "Step 1: Add an image to a slide",
+      "Step 2: Verify it defaults to fill mode (zoomed to fill slot)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Fit mode with blurred background shows social media look",
+    "steps": [
+      "Step 1: Switch image to fit mode",
+      "Step 2: Verify default background is blurred version of the same image",
+      "Step 3: Verify the effect looks like a social media letterbox style"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Per-image pan: focal point adjustable via drag in fill mode",
+    "steps": [
+      "Step 1: Add a wide landscape image in fill mode in a square-ish slot",
+      "Step 2: Click and drag left on the image",
+      "Step 3: Verify the visible crop area shifts to show different part of image",
+      "Step 4: Verify pan_x/pan_y values update in the data"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Title slide subtitle field is optional",
+    "steps": [
+      "Step 1: Create a title slide",
+      "Step 2: Add heading only, leave subtitle empty",
+      "Step 3: Verify slide renders correctly with just heading",
+      "Step 4: Add subtitle text",
+      "Step 5: Verify subtitle appears below heading"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Text-only slide supports multi-line body text",
+    "steps": [
+      "Step 1: Create a text-only slide",
+      "Step 2: Enter multiple lines of body text with line breaks",
+      "Step 3: Verify all lines render correctly on the slide"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Heading text is single-line, larger font",
+    "steps": [
+      "Step 1: Add heading text to a slide",
+      "Step 2: Verify it renders in a larger font size than body",
+      "Step 3: Verify it behaves as single-line (no multi-line wrap for input)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Body text is multi-line, smaller font than heading",
+    "steps": [
+      "Step 1: Add body text to a slide",
+      "Step 2: Verify it renders in smaller font than heading",
+      "Step 3: Verify multi-line text input is supported"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Chapter labels appear in filmstrip above grouped slides",
+    "steps": [
+      "Step 1: Create chapter title slides with headings",
+      "Step 2: Look at filmstrip",
+      "Step 3: Verify chapter heading text appears as label above the group of slides"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Deleting the only slide is handled gracefully",
+    "steps": [
+      "Step 1: Open project with one slide",
+      "Step 2: Attempt to delete the slide",
+      "Step 3: Verify either deletion is prevented or a new blank slide is auto-created"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Project updated_at timestamp changes on edit",
+    "steps": [
+      "Step 1: Note project's updated_at timestamp",
+      "Step 2: Make a change (add slide, edit text)",
+      "Step 3: Wait for auto-save",
+      "Step 4: Verify updated_at has changed to a more recent time"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Project creation sets initial title slide",
+    "steps": [
+      "Step 1: Create a new project via API",
+      "Step 2: Verify project has one slide with slide_type 'title' and sort_order 0"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Tertiary text uses rgba(0,0,0,0.45)",
+    "steps": [
+      "Step 1: Find muted/placeholder text elements",
+      "Step 2: Verify color is rgba(0,0,0,0.45)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Horizontal content padding is 20-25px throughout app",
+    "steps": [
+      "Step 1: Inspect horizontal padding on content areas",
+      "Step 2: Verify padding is consistently 20-25px"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Two-font system: primary serif/neo-grotesque + monospace for navigation/system text",
+    "steps": [
+      "Step 1: Verify headings and body use primary font family",
+      "Step 2: Find navigation labels, footer text, metadata",
+      "Step 3: Verify those use monospace font",
+      "Step 4: Verify clear visual separation between content and chrome typography"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Hero H1 typography: 72px, weight 300, tight tracking",
+    "steps": [
+      "Step 1: Find a hero heading element (title slide heading or landing)",
+      "Step 2: Verify font-size is ~72px",
+      "Step 3: Verify font-weight is 300",
+      "Step 4: Verify letter-spacing is ~-0.04em"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Fill tertiary background is rgba(0,0,0,0.04) for subtle fills",
+    "steps": [
+      "Step 1: Find elements with subtle background fills (hover states, icon backgrounds)",
+      "Step 2: Verify fill-tertiary is rgba(0,0,0,0.04)"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Project cards: ~320px width, structure is Media > Title > Description > Meta > Action",
+    "steps": [
+      "Step 1: Inspect project cards on /projects page",
+      "Step 2: Verify width is approximately 320px",
+      "Step 3: Verify card structure follows the specified order"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Grey borders/fills use #D9D9D9",
+    "steps": [
+      "Step 1: Find grey border or fill elements",
+      "Step 2: Verify color is #D9D9D9 or equivalent"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Button padding: primary CTAs have ~10px 24px padding",
+    "steps": [
+      "Step 1: Inspect primary CTA buttons",
+      "Step 2: Verify padding is approximately 10px vertical, 24px horizontal"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Ghost/secondary buttons: transparent bg, 1px border, 12px radius",
+    "steps": [
+      "Step 1: Find secondary/ghost buttons",
+      "Step 2: Verify transparent or white background",
+      "Step 3: Verify 1px border with stroke-medium color",
+      "Step 4: Verify 12px border-radius"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete drag-and-drop image workflow from desktop to multiple slides",
+    "steps": [
+      "Step 1: Open editor with 2 photo slides",
+      "Step 2: Select slide 1",
+      "Step 3: Drag 2 image files from desktop onto canvas",
+      "Step 4: Verify drop zone highlight appears",
+      "Step 5: Drop images",
+      "Step 6: Verify both images appear on slide 1 with 2-photo layout",
+      "Step 7: Verify both images appear in image tray",
+      "Step 8: Select slide 2",
+      "Step 9: Drag 3 different images from desktop",
+      "Step 10: Drop them on slide 2",
+      "Step 11: Verify 3-photo layout on slide 2",
+      "Step 12: Verify image tray now shows all 5 images"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete fill/fit mode comparison across multiple images on one slide",
+    "steps": [
+      "Step 1: Add 4 images to a slide (mix of landscape and portrait)",
+      "Step 2: Verify all default to fill mode",
+      "Step 3: Click image 1 (landscape), switch to fit mode",
+      "Step 4: Verify blurred letterbox background on image 1",
+      "Step 5: Click image 2 (portrait), switch to fit mode with white background",
+      "Step 6: Verify white background on image 2",
+      "Step 7: Click image 3, keep in fill mode, adjust pan position",
+      "Step 8: Verify image 3 crop area shifts",
+      "Step 9: Click image 4, switch to fit mode with black background",
+      "Step 10: Verify black background on image 4",
+      "Step 11: Take screenshot and verify all 4 images have their individual settings",
+      "Step 12: Refresh page and verify all settings persisted"
+    ],
+    "passes": false
+  },
+  {
+    "category": "functional",
+    "description": "Complete text region position cycling with layout verification",
+    "steps": [
+      "Step 1: Add a photo slide with 3 images",
+      "Step 2: Add heading and body text",
+      "Step 3: Set text position to Top",
+      "Step 4: Verify text above photos, photos below",
+      "Step 5: Set text position to Bottom",
+      "Step 6: Verify text below photos",
+      "Step 7: Set text position to Left",
+      "Step 8: Verify text on left (~30%), photos on right (~70%)",
+      "Step 9: Set text position to Right",
+      "Step 10: Verify text on right, photos on left",
+      "Step 11: Set text position to None",
+      "Step 12: Verify no text visible, photos fill entire slide"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete project duplicate verification: all data deep copied",
+    "steps": [
+      "Step 1: Create project with custom settings (4:3 ratio, 16px gap, 8px radius, Georgia font)",
+      "Step 2: Add title slide with hero image and heading",
+      "Step 3: Add 2 photo slides with 3 images each, custom layout variants",
+      "Step 4: Add text to slides",
+      "Step 5: Set one image to fit mode with color background",
+      "Step 6: Return to project list",
+      "Step 7: Duplicate the project",
+      "Step 8: Open the duplicate",
+      "Step 9: Verify all project settings match (ratio, gap, radius, font)",
+      "Step 10: Verify all slides are present with correct types and order",
+      "Step 11: Verify all images are present on correct slides",
+      "Step 12: Verify per-image settings (fill/fit mode, backgrounds) are preserved",
+      "Step 13: Verify text content matches on all slides"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete auto-layout scoring test: verify optimal variant selection",
+    "steps": [
+      "Step 1: Create slide and add 3 landscape images (all ratio > 1.5)",
+      "Step 2: Verify auto-selected variant favors horizontal arrangement (e.g., three columns or one top + two bottom)",
+      "Step 3: Remove all images",
+      "Step 4: Add 3 portrait images (all ratio < 0.7)",
+      "Step 5: Verify auto-selected variant favors vertical arrangement",
+      "Step 6: Remove all images",
+      "Step 7: Add 1 landscape + 2 portrait images",
+      "Step 8: Verify auto-selected variant uses large landscape + stacked portraits",
+      "Step 9: Remove all images",
+      "Step 10: Add 3 square images",
+      "Step 11: Verify auto-selected variant is three equal columns"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete keyboard shortcuts integration test",
+    "steps": [
+      "Step 1: Open editor with multiple slides and images",
+      "Step 2: Press Down arrow to navigate to next slide",
+      "Step 3: Press Down arrow again",
+      "Step 4: Press Up arrow to go back",
+      "Step 5: Press Cmd/Ctrl+V to paste an image",
+      "Step 6: Verify image is added",
+      "Step 7: Click an image to select it",
+      "Step 8: Press Delete to remove it",
+      "Step 9: Verify image removed from slide",
+      "Step 10: Press Cmd/Ctrl+Z to undo the deletion",
+      "Step 11: Verify image is restored",
+      "Step 12: Press Cmd/Ctrl+Shift+Z to redo",
+      "Step 13: Verify image is removed again",
+      "Step 14: Press Escape to deselect any selection"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete image tray workflow: upload, organize, use across slides",
+    "steps": [
+      "Step 1: Open editor with empty project",
+      "Step 2: Click upload in image tray",
+      "Step 3: Upload 8 images",
+      "Step 4: Verify all 8 appear in tray with horizontal scroll",
+      "Step 5: Verify no images have usage badges (none on slides yet)",
+      "Step 6: Add slide 1, drag 3 images from tray",
+      "Step 7: Verify those 3 images now show usage badges in tray",
+      "Step 8: Add slide 2, drag 3 different images from tray",
+      "Step 9: Verify 6 images now have badges, 2 do not",
+      "Step 10: Remove 1 image from slide 1",
+      "Step 11: Verify its badge updates (now only on slide 2 or no badge)",
+      "Step 12: Delete 1 unused image from tray",
+      "Step 13: Verify tray now shows 7 images"
+    ],
+    "passes": false
+  },
+  {
+    "category": "style",
+    "description": "Complete design system audit: verify all major color tokens across UI",
+    "steps": [
+      "Step 1: Open project list page",
+      "Step 2: Verify page background is #F8F8F8",
+      "Step 3: Verify primary text is rgba(0,0,0,0.85)",
+      "Step 4: Verify secondary text (dates, descriptions) is rgba(0,0,0,0.60)",
+      "Step 5: Verify primary buttons are #000 bg with #F8F8F8 text",
+      "Step 6: Open editor page",
+      "Step 7: Verify same background color",
+      "Step 8: Verify card shadows match rgba(0,0,0,0.08) 0 0 8px",
+      "Step 9: Verify borders use stroke-light or stroke-medium opacity",
+      "Step 10: Verify no accidental use of pure gray (#808080) for text"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Complete typography audit: verify type scale across all text roles",
+    "steps": [
+      "Step 1: Navigate to pages with headings",
+      "Step 2: Verify H1 hero elements use ~72px, weight 300",
+      "Step 3: Verify H2 section headings use ~54px, weight 300",
+      "Step 4: Verify body text uses 16px, weight 400",
+      "Step 5: Verify caption text uses 18px, weight 400",
+      "Step 6: Find monospace label text",
+      "Step 7: Verify mono labels use 13px, uppercase, +1.3px letter-spacing",
+      "Step 8: Verify subtitle text uses 22px, weight 400",
+      "Step 9: Check that letter-spacing tightens proportionally with size increase",
+      "Step 10: Verify bold within running text uses weight 500, not 700"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Complete border radius audit: verify radius tokens across all components",
+    "steps": [
+      "Step 1: Check small chips/tags for 10px radius",
+      "Step 2: Check input fields for 12px radius",
+      "Step 3: Check buttons for 16px radius",
+      "Step 4: Check nav pill and larger elements for 20px radius",
+      "Step 5: Check cards, nav bar, and drawers for 30px radius",
+      "Step 6: Check avatars for 9999px (full) radius",
+      "Step 7: Verify filmstrip thumbnails use 12px radius",
+      "Step 8: Verify floating toolbar uses 20px radius",
+      "Step 9: Verify settings drawer uses 30px radius",
+      "Step 10: Verify overall consistency \u2014 30px is the dominant signature radius"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Complete spacing audit: verify spacing scale across the app",
+    "steps": [
+      "Step 1: Check horizontal content padding (should be 20-25px)",
+      "Step 2: Check card internal padding (should be 32px)",
+      "Step 3: Check gap between card elements (should be 15-20px)",
+      "Step 4: Check spacing between major page sections (~200px)",
+      "Step 5: Open settings drawer",
+      "Step 6: Verify internal spacing follows the design scale",
+      "Step 7: Check filmstrip sidebar for consistent spacing between thumbnails",
+      "Step 8: Check image tray for consistent spacing between thumbnails",
+      "Step 9: Verify overall layout feels unhurried with generous breathing room",
+      "Step 10: Verify the spacing scale (6,10,12,20,24,32,60,100,120,200) is consistently applied"
+    ],
+    "passes": true
+  },
+  {
+    "category": "style",
+    "description": "Complete frosted glass effect audit across all components that use it",
+    "steps": [
+      "Step 1: Check floating toolbar has backdrop-filter: blur(24px)",
+      "Step 2: Verify floating toolbar has semi-transparent white bg",
+      "Step 3: Open settings drawer",
+      "Step 4: Verify drawer has backdrop-filter: blur(24px)",
+      "Step 5: Verify drawer has rgba(255,255,255,0.95) background",
+      "Step 6: Check navigation bar/top bar",
+      "Step 7: Verify nav has frosted glass effect with rgba(235,235,235,0.7)",
+      "Step 8: Verify all frosted elements have visible blur when content is behind them",
+      "Step 9: Verify consistent glass effect across all three component types",
+      "Step 10: Verify no component uses blur without semi-transparent background"
+    ],
+    "passes": true
+  },
+  {
+    "category": "functional",
+    "description": "Complete settings persistence and cross-slide effect verification",
+    "steps": [
+      "Step 1: Create project with 3 photo slides, each with 4 images",
+      "Step 2: Open settings, set gap to 16px",
+      "Step 3: Verify gap changes on current slide",
+      "Step 4: Navigate to other slides and verify gap is 16px on all",
+      "Step 5: Set border radius to 12px",
+      "Step 6: Verify rounded corners on all slides",
+      "Step 7: Change heading font",
+      "Step 8: Verify heading text on all slides uses new font",
+      "Step 9: Change body font",
+      "Step 10: Verify body text on all slides uses new font",
+      "Step 11: Refresh page",
+      "Step 12: Verify all settings are still applied after reload"
+    ],
+    "passes": true
+  }
+]
