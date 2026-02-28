@@ -38,7 +38,7 @@ See [`example-app-spec-guide.md`](example-app-spec-guide.md) for the app spec wr
 
 Once you have a spec, you need to decompose it into a `feature_list.json` — a flat list of testable features with steps and a `passes` boolean. This becomes the single source of truth for what Claude works on each iteration.
 
-See [`example-create-feature-list-prompt.md`](example-create-feature-list-prompt.md) for a prompt that generates this from an app spec.
+This is done by running Claude Code (interactively or headless) with a prompt that tells it to read the app spec and generate the feature list. See [`example-create-feature-list-prompt.md`](example-create-feature-list-prompt.md) for the prompt — you'd place your `app_spec.txt` in the repo first, then run this as the first session.
 
 See [`example-feature_list.json`](example-feature_list.json) for the resulting output. Each entry looks like:
 
