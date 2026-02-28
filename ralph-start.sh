@@ -34,14 +34,14 @@ for ((i=1; i<=$1; i++)); do
           if .type == "text" then "  " + .text
           elif .type == "tool_use" then
             .name as $name |
-            if $name == "Read" then "  > Read [" + (.input.file_path // "" | split("/") | last) + "]"
-            elif $name == "Edit" then "  > Edit [" + (.input.file_path // "" | split("/") | last) + "]"
-            elif $name == "Write" then "  > Write [" + (.input.file_path // "" | split("/") | last) + "]"
-            elif $name == "Bash" then "  > Bash [" + ((.input.command // "" )[:80]) + "]"
-            elif $name == "Grep" then "  > Grep [" + (.input.pattern // "") + "]"
-            elif $name == "Glob" then "  > Glob [" + (.input.pattern // "") + "]"
-            elif ($name | startswith("mcp__claude-in-chrome__")) then "  > Chrome:" + ($name | ltrimstr("mcp__claude-in-chrome__"))
-            else "  > " + $name
+            if $name == "Read" then "  \u001b[33m> Read [\u001b[0m" + (.input.file_path // "" | split("/") | last) + "\u001b[33m]\u001b[0m"
+            elif $name == "Edit" then "  \u001b[33m> Edit [\u001b[0m" + (.input.file_path // "" | split("/") | last) + "\u001b[33m]\u001b[0m"
+            elif $name == "Write" then "  \u001b[33m> Write [\u001b[0m" + (.input.file_path // "" | split("/") | last) + "\u001b[33m]\u001b[0m"
+            elif $name == "Bash" then "  \u001b[33m> Bash [\u001b[0m" + ((.input.command // "" )[:80]) + "\u001b[33m]\u001b[0m"
+            elif $name == "Grep" then "  \u001b[33m> Grep [\u001b[0m" + (.input.pattern // "") + "\u001b[33m]\u001b[0m"
+            elif $name == "Glob" then "  \u001b[33m> Glob [\u001b[0m" + (.input.pattern // "") + "\u001b[33m]\u001b[0m"
+            elif ($name | startswith("mcp__claude-in-chrome__")) then "  \u001b[33m> Chrome:\u001b[0m" + ($name | ltrimstr("mcp__claude-in-chrome__"))
+            else "  \u001b[33m> " + $name + "\u001b[0m"
             end
           else empty end
         ' 2>/dev/null
@@ -50,7 +50,7 @@ for ((i=1; i<=$1; i++)); do
         turns=$(echo "$line" | jq -r '.num_turns // 0' 2>/dev/null)
         duration=$(echo "$line" | jq -r '(.duration_ms // 0) / 1000 | floor' 2>/dev/null)
         echo ""
-        echo "  Done. ${turns} turns, ${duration}s"
+        echo -e "  \033[32mDone. ${turns} turns, ${duration}s\033[0m"
         ;;
     esac
   done
